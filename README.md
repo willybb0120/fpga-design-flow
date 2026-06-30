@@ -3,7 +3,7 @@
 FPGA 電路設計 workflow + 踩坑知識庫的 Claude Code plugin（Xilinx/AMD Vivado+Vitis）。
 
 ## 安裝
-1. `/plugin marketplace add <github-repo-url>`
+1. `/plugin marketplace add https://github.com/willybb0120/fpga-design-flow`
 2. `/plugin install fpga-design-flow`
 
 ## 四個 skill 何時用
