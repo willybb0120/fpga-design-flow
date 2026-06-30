@@ -1,17 +1,19 @@
 ---
-name: init-fpga-claudemd
-description: Use when starting a new FPGA hardware project and need to create CLAUDE.md plus a development result-record template - for Vivado/Verilog/Vitis projects on Xilinx/AMD boards; invoke before writing any code
+name: init-fpga-agents
+description: Use when starting a new FPGA hardware project and need to create the agent instructions file (AGENTS.md, plus CLAUDE.md for Claude Code) and a development result-record template - for Vivado/Verilog/Vitis projects on Xilinx/AMD boards; invoke before writing any code
 ---
 
-# Init Project CLAUDE.md
+# Init FPGA Project Agent Instructions
 
 ## Overview
 
-CLAUDE.md 約束 agent 行為並記錄專案工作流程。**「強制規則」section 是最關鍵的部分** — 沒有它，agent 會直接 commit 到 main、跳過模擬、忽略時序問題、未經確認就合併。
+agent 指令檔約束 agent 行為並記錄專案工作流程。**「強制規則」section 是最關鍵的部分** — 沒有它，agent 會直接 commit 到 main、跳過模擬、忽略時序問題、未經確認就合併。
 
-## Step 1：進入 Plan Mode 收集路徑
+> **指令檔命名（依 harness）**：以 **`AGENTS.md`** 為主檔（Codex、跨工具標準皆讀它）。Claude Code 預設讀 `CLAUDE.md`，故**另建一份 `CLAUDE.md`**：在支援 symlink 的檔案系統用 `ln -s AGENTS.md CLAUDE.md`；在 Windows/掛載磁碟（如 `/mnt/c`）symlink 不可靠時改用內容相同的副本。本文後續以「指令檔」統稱。
 
-使用 `EnterPlanMode` 工具進入規劃模式，**依序**詢問以下資訊（一次一個，等使用者回答再問下一個）：
+## Step 1：進入規劃模式收集路徑
+
+進入規劃模式（plan mode），**依序**詢問以下資訊（一次一個，等使用者回答再問下一個）：
 
 **第一輪：四個共用路徑**
 
@@ -32,7 +34,7 @@ CLAUDE.md 約束 agent 行為並記錄專案工作流程。**「強制規則」s
 8. Vivado ipshared 路徑（合成快取，**不可省略**）
 9. XSA 輸出檔路徑
 
-收集完成後，展示路徑摘要供使用者確認，然後使用 `ExitPlanMode` 離開規劃模式，再執行 Step 3 生成 CLAUDE.md。
+收集完成後，展示路徑摘要供使用者確認，然後離開規劃模式，再執行 Step 3 生成指令檔。
 
 ## Step 2：識別專案類型
 
@@ -40,7 +42,9 @@ CLAUDE.md 約束 agent 行為並記錄專案工作流程。**「強制規則」s
 - **軟體**：有 build system（cmake/make/npm）、無硬體工具
 - **混合**：兩者皆有
 
-## Step 3：生成 CLAUDE.md
+## Step 3：生成指令檔
+
+> 把以下 sections 寫進 `AGENTS.md`，再依 Overview 的規則建立對應的 `CLAUDE.md`（symlink 或副本）。
 
 ### Section 1：⛔ 強制規則（必須是第一個 section，必須用此確切語言）
 

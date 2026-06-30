@@ -1,0 +1,27 @@
+{
+  "name": "fpga-design-flow",
+  "version": "0.1.0",
+  "description": "FPGA circuit-design skills for Xilinx/AMD Vivado+Vitis: project init, RTL+iverilog verification, full synthesis-to-board workflow, and a growing toolchain-pitfalls knowledge base.",
+  "author": {
+    "name": "willybb0120",
+    "url": "https://github.com/willybb0120"
+  },
+  "homepage": "https://github.com/willybb0120/fpga-design-flow",
+  "repository": "https://github.com/willybb0120/fpga-design-flow",
+  "license": "MIT",
+  "keywords": ["fpga", "vivado", "vitis", "verilog", "iverilog", "xilinx", "workflow", "pitfalls"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "FPGA Design Flow",
+    "shortDescription": "Vivado+Vitis FPGA project init, RTL+iverilog verification, synthesis-to-board workflow, and a pitfalls knowledge base",
+    "longDescription": "Guides FPGA development on Xilinx/AMD Vivado+Vitis: scaffolds the project agent-instructions file and a result-record template, enforces an RTL -> iverilog -> synthesis -> board-verify flow with mandatory gates, and looks up fixes from a categorized toolchain-pitfalls knowledge base that grows via PRs.",
+    "developerName": "willybb0120",
+    "category": "Coding",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": [
+      "I'm starting a new Vivado FPGA project.",
+      "Help me add an RTL module and verify it."
+    ],
+    "websiteURL": "https://github.com/willybb0120/fpga-design-flow"
+  }
+}

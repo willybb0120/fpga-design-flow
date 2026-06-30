@@ -9,12 +9,12 @@ description: Use when adding or modifying RTL in a Xilinx/AMD Vivado+Vitis FPGA 
 動任何 RTL 前，先用 superpowers `brainstorming` 設計、`writing-plans` 出計畫。有 spec 與 plan 才寫 code。
 
 ## 前置檢查
-若專案無 CLAUDE.md → 先 invoke `init-fpga-claudemd` 建檔，再回到本流程。路徑請查該專案 CLAUDE.md 的路徑對照（IP 名稱、板子用該專案實際值）。
+若專案無 agent 指令檔（`AGENTS.md` / `CLAUDE.md`）→ 先 invoke `init-fpga-agents` 建檔，再回到本流程。路徑請查該專案指令檔的路徑對照（IP 名稱、板子用該專案實際值）。
 
 ## 階段一：Branch + RTL + 門1
 1. 確認不在 main，開 branch：`git checkout -b feat/<名稱>` 或 `fix/<名稱>`
 2. 只改 `src/*.v`
-3. cp 到 Vivado 兩目錄（ipdefs/hdl + ipshared 快取；路徑見 CLAUDE.md）
+3. cp 到 Vivado 兩目錄（ipdefs/hdl + ipshared 快取；路徑見指令檔）
 4. **[門1] iverilog 模擬必須 pass**：`iverilog -o sim/sim_out sim/<tb>.v src/<module>.v && vvp sim/sim_out`
 5. commit（`sim:` / `feat:` / `fix:`）
 
