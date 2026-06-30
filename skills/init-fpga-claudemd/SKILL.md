@@ -16,7 +16,7 @@ CLAUDE.md 約束 agent 行為並記錄專案工作流程。**「強制規則」s
 **第一輪：四個共用路徑**
 
 1. **開發根目錄**（WSL，source of truth）
-   - 範例：`/home/wsl_user/workspace/projects/<project>/`
+   - 範例：`/home/<username>/workspace/projects/<project>/`
 2. **Vivado 專案目錄**
    - 範例：`/mnt/c/pcam/.../vivado_proj/`
 3. **Vitis 專案目錄**

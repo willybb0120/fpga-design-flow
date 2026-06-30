@@ -21,7 +21,7 @@
 ### 坑：XPAR_* 常數全部改名（SDT mode）
 - **錯誤訊息**：大量 `<name> was not declared in this scope`
 - **原因**：Vitis 2025.2 啟用 SDT，LookupConfig 改用 base address 而非整數 device ID
-- **解法**：建 `src/xparameters_compat.h` 做新舊名對照（下表），main 改 include 它
+- **解法**：建 `src/xparameters_compat.h`，用 `#define 舊名 新名` 逐一對照（下表），main 改 include 它
   | 舊名（2019.1） | 新名（2025.2） |
   |---|---|
   | `XPAR_PS7_SCUGIC_0_DEVICE_ID` | `XPAR_XSCUGIC_0_BASEADDR` |
