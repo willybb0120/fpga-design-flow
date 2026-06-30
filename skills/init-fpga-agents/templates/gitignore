@@ -1,0 +1,101 @@
+# ============================================================
+# Vivado 生成目錄（可重新合成，不應提交）
+# ============================================================
+vivado_workspace/*.runs/
+vivado_workspace/*.cache/
+vivado_workspace/*.sim/
+vivado_workspace/*.hw/
+vivado_workspace/*.ip_user_files/
+vivado_workspace/*.str
+vivado_workspace/*.gen/
+
+# Vivado 日誌與備份
+vivado_workspace/vivado*.jou
+vivado_workspace/vivado*.log
+vivado_workspace/vivado*.backup.*
+vivado_workspace/ip_upgrade.log
+vivado_workspace/dfx_runtime.txt
+vivado_workspace/NA/
+
+# Vivado 中間產物（任意位置，含 repo 根目錄）
+.Xil/
+dfx_runtime.txt
+
+# Bitstream 與匯出硬體（可重新生成）
+vivado_workspace/*.xsa
+*.bit
+*.ltx
+
+# Design Checkpoint（大型 binary，可由合成重新生成）
+*.dcp
+
+# Vivado 報告（可重新生成）
+*.rpt
+*.rpx
+
+# ============================================================
+# Block Design 自動生成檔（保留 .bd 源碼，其餘從 .bd 重生）
+# ============================================================
+vivado_workspace/*.srcs/sources_1/bd/*/hdl/
+vivado_workspace/*.srcs/sources_1/bd/*/hw_handoff/
+vivado_workspace/*.srcs/sources_1/bd/*/sim/
+vivado_workspace/*.srcs/sources_1/bd/*/synth/
+vivado_workspace/*.srcs/sources_1/bd/*/ip/
+vivado_workspace/*.srcs/sources_1/bd/*/ipshared/
+vivado_workspace/*.srcs/sources_1/bd/mref/
+vivado_workspace/*.srcs/sources_1/bd/*/*.bxml
+vivado_workspace/*.srcs/sources_1/bd/*/*.veo
+vivado_workspace/*.srcs/sources_1/bd/*/*.vho
+vivado_workspace/*.srcs/sources_1/bd/*/*_sv.sv
+vivado_workspace/*.srcs/sources_1/bd/*/*_sv.sveo
+
+# ============================================================
+# Vitis 生成目錄
+# ============================================================
+vitis_workspace/**/.metadata/
+vitis_workspace/**/.Xil/
+vitis_workspace/**/build/
+vitis_workspace/**/_ide/
+vitis_workspace/**/*.elf
+vitis_workspace/**/*.bit
+vitis_workspace/**/*.xsa
+vitis_workspace/**/RemoteSystemsTempFiles/
+vitis_workspace/.rigel_lopper/
+
+# Vitis Platform 整體排除（BSP 源碼可從 .xsa 重建）
+vitis_workspace/platform/
+
+# IDE/build 衍生檔
+vitis_workspace/**/compile_commands.json
+vitis_workspace/**/.clangd
+
+# ============================================================
+# 截圖與臨時檔
+# ============================================================
+*.png
+
+# ============================================================
+# iverilog 模擬輸出
+# ============================================================
+sim/sim_*
+sim/*.vcd
+sim/*.lxt
+
+# ============================================================
+# Agent 本地設定（含個人權限，不應提交）
+# ============================================================
+.claude/settings.local.json
+
+# ============================================================
+# Git worktrees（隔離開發工作區，不應提交）
+# ============================================================
+.worktrees/
+
+# ============================================================
+# 系統檔案
+# ============================================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
