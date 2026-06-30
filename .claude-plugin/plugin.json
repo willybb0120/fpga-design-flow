@@ -1,0 +1,11 @@
+{
+  "name": "fpga-design-flow",
+  "description": "FPGA circuit-design workflow for Xilinx/AMD Vivado+Vitis: project init, RTL+iverilog verification, full synthesis-to-board flow, and a growing toolchain-pitfalls knowledge base",
+  "version": "0.1.0",
+  "author": {
+    "name": "<your-name>"
+  },
+  "repository": "<github-repo-url>",
+  "license": "MIT",
+  "keywords": ["fpga", "vivado", "vitis", "verilog", "iverilog", "xilinx", "workflow", "pitfalls"]
+}
