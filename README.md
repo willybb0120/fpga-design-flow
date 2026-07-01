@@ -10,6 +10,19 @@
 - **驗證靠自律**：模擬/時序/板上沒有強制把關，容易漏到燒板才爆
 - **經驗綁個人**：踩坑紀錄散落各處，人一走就沒了
 
+## 誰需要使用它
+
+**適合**
+- 用 **Xilinx/AMD Vivado + Vitis** 做 FPGA 開發的實驗室成員
+- **新進成員**：一鍵拿到標準流程與專案結構，不必從零摸索
+- **接手他人專案的人**：每個專案結構一致，好上手
+- **知識庫維護者**：集中管理踩坑經驗、審 PR
+- 使用 **Claude Code 或 Codex** 的人
+
+**不適合（誠實說明）**
+- 非 Xilinx 工具鏈（Intel/Quartus 等）——目前不涵蓋
+- 不用 agent（純手動）開發者——skills 需要 agent 觸發才有作用
+
 ## 用起來像什麼
 開新專案時，agent 先幫你**建出標準目錄結構**（src/sim/constraints/docs/… + .gitignore）和指令檔，全實驗室專案長得一致。之後你要改一個模組，它不會直接寫 code——先帶你釐清設計、出計畫；接著開 branch、改 RTL，**iverilog 沒過不准進合成**；合成後**時序 WNS 沒過不准燒板**；板上驗證通過後，**它停下來等你說「可以合併」才收尾**。撞到 Vivado/Vitis 錯誤，它自動翻踩坑知識庫找解法——查不到、你自己解掉後，再把新坑回寫進知識庫給下一個人。
 
@@ -38,6 +51,30 @@
 | fpga-vivado-workflow | 改 RTL 走完整 Vivado+Vitis 流程（含三道門） |
 | rtl-iverilog-flow | 只做 RTL+iverilog 驗證（其他平台/簡單專案） |
 | fpga-pitfalls | 遇 Vivado/Vitis/時序錯誤查解法 |
+
+## 架構概述
+
+四個 skill 分成兩類——**程序**（照著走的流程）與**資料**（查詢用的知識），加上隨附模板：
+
+| 類別 | skill | 角色 |
+|------|-------|------|
+| 程序 | init-fpga-agents | 建檔＋建標準結構（一次性） |
+| 程序 | fpga-vivado-workflow | 完整開發 SOP：規劃→模擬→合成→板上（反覆） |
+| 程序 | rtl-iverilog-flow | 輕量驗證：只做 RTL+iverilog（其他平台/簡單專案） |
+| 資料 | fpga-pitfalls | 踩坑知識庫，遇錯查解、隨 PR 成長 |
+
+**串接關係**
+```
+init-fpga-agents ──建好專案──▶ fpga-vivado-workflow ──遇錯──▶ fpga-pitfalls
+（新專案）                      （每次開發）              （查解法/回寫）
+                                rtl-iverilog-flow
+                                （不走 Vivado 時的輕量版）
+```
+
+**設計取捨**
+- **程序與資料分離**：知識庫獨立成長，不污染工作流程
+- **模板隨 skill**：結果紀錄、`.gitignore`、踩坑條目模板各放在用它的 skill 底下 `templates/`
+- **harness 中立**：skills 不綁單一工具，Claude Code / Codex 共用
 
 ## 標準專案結構（init-fpga-agents 自動建立）
 ```
